@@ -12,18 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, value: current_user.id, type: 'hidden' %>
   </div>
 
   <div class="field">
     <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
+    <%= form.select :category_id, @categories.map { |categorie| [categorie.description, categorie.id] } %>
   </div>
 
   <div class="field">
     <%= form.label :unity_id %>
-    <%= form.text_field :unity_id %>
+    <%= form.select :unity_id, @unities.map { |unity| [unity.description, unity.id] } %>
   </div>
 
   <div class="field">
@@ -42,8 +41,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
+    <%= form.number_field :status, value: 0, type: 'hidden' %>
   </div>
 
   <div class="actions">
