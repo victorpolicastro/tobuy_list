@@ -2,17 +2,17 @@
 
 <p>
   <strong>User:</strong>
-  <%= @item.user %>
+  <%= @item.user.name %>
 </p>
 
 <p>
   <strong>Category:</strong>
-  <%= @item.category %>
+  <%= @item.category.description %>
 </p>
 
 <p>
   <strong>Unity:</strong>
-  <%= @item.unity %>
+  <%= @item.unity.description %>
 </p>
 
 <p>
@@ -28,11 +28,6 @@
 <p>
   <strong>Brand:</strong>
   <%= @item.brand %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @item.status %>
 </p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
