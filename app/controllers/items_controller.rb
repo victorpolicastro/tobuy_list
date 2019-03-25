@@ -65,6 +65,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  # Mark the item as bought
+  def mark_as_bought
+    Item.find_by(id: params[:item_id]).update(status: 1)
+    respond_to do |format|
+      format.html { redirect_to items_url, notice: 'Item marked as bought.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
