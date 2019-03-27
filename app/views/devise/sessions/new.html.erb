@@ -18,7 +18,10 @@
     <br /><br />
 
     <div class="actions">
-      <%= f.submit "+", class: 'waves-light btn-floating btn-large blue' %>
+      <%= button_tag(type: "submit", class: "waves-light btn-floating btn-large blue", name: "commit", value: "Submit") do %>
+        <i class='fa fa-check'></i>
+      <% end %>
+
       <%= link_to "?", new_password_path(resource_name), class: 'waves-light btn-floating btn-large red' %><br />
     </div>
     <br />
