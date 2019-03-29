@@ -1,6 +1,6 @@
-<br /><br />
-
 <div class="container">
+  <div class="divider"></div>
+  <br />
   <%= form_with(model: item, local: true) do |form| %>
     <% if item.errors.any? %>
       <div id="error_explanation">
@@ -51,8 +51,6 @@
     <div class="field">
       <%= form.number_field :status, value: 0, type: 'hidden' %>
     </div>
-
-    <br /><br />
 
     <div class="actions align-center">
       <%= button_tag(type: "submit", class: "waves-light btn-floating btn-large green", name: "commit", value: "Submit") do %>

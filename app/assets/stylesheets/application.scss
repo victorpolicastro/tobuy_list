@@ -33,6 +33,11 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    color: #2196F3;
+    text-align: center;
+}
+
 i {
     font-size: 35px;
 }
@@ -90,8 +95,8 @@ td {
 .login-body {
     background-color: #f2f2f2;
     border-radius: 20px;
-    width: 50%;
-    border: 1px solid #808080;
+    width: 55%;
+    border: 1px solid black;
 }
 
 .notice {
@@ -104,6 +109,6 @@ td {
 .system-body {
     background-color: #f2f2f2;
     border-radius: 20px;
-    border: 1px solid #808080;
+    border: 2px solid black;
     width: 70%;
 }
