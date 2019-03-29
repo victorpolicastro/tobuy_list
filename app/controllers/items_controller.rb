@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to items_path, notice: 'Item was successfully created.' }
+        format.html { redirect_to items_path, notice: 'Item criado com sucesso.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to items_path, notice: 'Item was successfully updated.' }
+        format.html { redirect_to items_path, notice: 'Item atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -60,16 +60,16 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to items_url, notice: 'Item deletado com sucesso.' }
       format.json { head :no_content }
     end
   end
 
   # Mark the item as bought
   def mark_as_bought
-    Item.find_by(id: params[:item_id]).update(status: 1)
+    item = Item.find_by(id: params[:item_id]).update(status: 1)
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item marked as bought.' }
+      format.html { redirect_to items_url, notice: "Item marcado como comprado." }
       format.json { head :no_content }
     end
   end

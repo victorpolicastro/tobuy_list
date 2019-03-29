@@ -15,19 +15,16 @@
 
   <body>
       <br />
+      <% flash.each do |message_type, message| %>
+        <%= javascript_tag "M.toast({html: '#{message}', classes: 'rounded #{message_type}'})" %>
+      <% end %>
       <% if current_user.nil? %>        
-          <% flash.each do |message_type, message| %>
-            <%= javascript_tag "M.toast({html: '#{message}', classes: 'rounded #{message_type}'})" %>
-          <% end %>
           <div class="align-center login-body container">
             <%= yield %>
           </div>
           <br /><br />
       <% else %>
         <div class="container system-body">
-          <% flash.each do |message_type, message| %>
-            <%= javascript_tag "M.toast({html: '#{message}', classes: 'rounded #{message_type}'})" %>
-          <% end %>
           <%= yield %>
           <br /><br>
         </div>
