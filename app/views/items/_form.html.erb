@@ -1,56 +1,72 @@
-<%= form_with(model: item, local: true) do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+<br /><br />
 
-      <ul>
-      <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="container">
+  <%= form_with(model: item, local: true) do |form| %>
+    <% if item.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+        <ul>
+        <% item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.text_field :user_id, value: current_user.id, type: 'hidden' %>
+    </div>
+
+    <div class="field">
+      <%= form.select :category_id, @categories.map { |categorie| [categorie.description, categorie.id]}, class: 'form-input', style: 'size: 59px' %>
+    </div>
+
+    <br /><br />
+
+    <div class="field">
+      <%= form.select :unity_id, @unities.map { |unity| [unity.description, unity.id]}, class: 'form-input' %>
+    </div>
+
+    <br /><br />
+
+    <div class="field">
+      <%= form.text_field :quantity, class: 'form-input', placeholder: 'quantidade' %>
+    </div>
+
+    <br /><br />
+
+    <div class="field">
+      <%= form.text_field :description, class: 'form-input', placeholder: 'descrição' %>
+    </div>
+
+    <br /><br />
+
+    <div class="field">
+      <%= form.text_field :brand, class: 'form-input', placeholder: 'marca' %>
+    </div>
+
+    <br /><br />
+
+    <div class="field">
+      <%= form.number_field :status, value: 0, type: 'hidden' %>
+    </div>
+
+    <br /><br />
+
+    <div class="actions align-center">
+      <%= button_tag(type: "submit", class: "waves-light btn-floating btn-large green", name: "commit", value: "Submit") do %>
+        <i class='fas fa-check'></i>
       <% end %>
-      </ul>
+      <%= link_to raw("<i class='fas fa-arrow-left'></i>"), items_path, class: 'waves-light btn-floating btn-large red' %><br />
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.text_field :user_id, value: current_user.id, type: 'hidden' %>
-  </div>
+  <script>
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+  </script>
+</div>
 
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.select :category_id, @categories.map { |categorie| [categorie.description, categorie.id] } %>
-  </div>
-
-  <div class="field">
-    <%= form.label :unity_id %>
-    <%= form.select :unity_id, @unities.map { |unity| [unity.description, unity.id] } %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.text_field :quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :brand %>
-    <%= form.text_field :brand %>
-  </div>
-
-  <div class="field">
-    <%= form.number_field :status, value: 0, type: 'hidden' %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<script>
-  $(document).ready(function(){
-    $('select').formSelect();
-  });
-</script>
+<br />

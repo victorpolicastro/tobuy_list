@@ -1,22 +1,45 @@
-<h1>Items</h1>
+<h1>Lista de compras</h1>
 
-<table>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td>
-          <%= form_tag item_mark_as_bought_path(item), method: 'put' do %>
-            <%= hidden_field_tag :item_id, item.id %>
-            <%= submit_tag 'Done' %>
-          <% end %>
-        </td>
-        <td><%= item.quantity %></td>
-        <td><%= link_to item.description, edit_item_path(item) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<br /><br />
 
-<br>
+<div class="container">
+  <table>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr id="<%= item.id %>">
+          <td style="width: 100px">
+            <%= form_tag item_mark_as_bought_path(item), method: 'put' do %>
+              <%= hidden_field_tag :item_id, item.id %>
+              <%= button_tag(type: "submit", class: "waves-light btn-floating btn-large green", name: "commit", value: "Submit") do %>
+                <i class='fas fa-check'></i>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <b>
+              <% if item.quantity == item.quantity.to_i %>
+                <%= item.quantity.to_i %>
+              <% else %>
+                <%= number_with_precision(item.quantity, separator: ',', precision: 2, delimiter: '.') %>
+              <% end %>  
+            </b>  
+            <%= link_to "#{item.description}(s)", item %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Item', new_item_path %>
+  <br><br><br><br>
+
+  <div class="align-center">
+    <%= link_to raw("<i class='fa fa-plus'></i>"), new_item_path, class: 'waves-light btn-floating btn-large blue' %><br />
+  </div>
+</div>
+
+<script>
+  function markAsBought(id) {
+    document.getElementById(id).remove();
+  }
+</script>
+

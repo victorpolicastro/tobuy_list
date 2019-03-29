@@ -1,34 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @item.user.name %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @item.category.description %>
-</p>
-
-<p>
-  <strong>Unity:</strong>
-  <%= @item.unity.description %>
-</p>
-
-<p>
-  <strong>Quantity:</strong>
-  <%= @item.quantity %>
-</p>
-
-<p>
-  <strong>Description:</strong>
+<h1>
+  <% if @item.quantity == @item.quantity.to_i %>
+    <%= @item.quantity.to_i %>
+  <% else %>
+    <%= number_with_precision(@item.quantity, separator: ',', precision: 2, delimiter: '.') %>
+  <% end %>
+  <%= @item.unity.initials %>
   <%= @item.description %>
-</p>
+  <% if !@item.brand.blank? %>
+    - <%= @item.brand %>
+  <% end %>
+</h1>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @item.brand %>
-</p>
+<div class="container align-center">
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+
+  <br />
+
+  <p>
+    <strong>Requisitado por:</strong>
+    <%= @item.user.name %>
+  </p>
+  
+  <% if !@item.category.blank? %>
+    <p>
+      <strong>Categoria:</strong>
+      <%= @item.category.description %>
+    </p>
+  <% end %>
+
+  <br /><br />
+
+  <%= link_to raw("<i class='fas fa-arrow-left'></i>"), items_path, class: 'waves-light btn-floating btn-large red' %><br />
+</div>
+
+<br />
