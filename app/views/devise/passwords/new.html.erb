@@ -1,16 +1,25 @@
-<h2>Forgot your password?</h2>
+<h1>Esqueceu a senha?</h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<br />
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "e-mail", class: 'form-input' %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <br /><br />
+
+    <div class="actions">
+      <%= button_tag(type: "submit", class: "waves-light btn-floating btn-large green", name: "commit", value: "Submit") do %>
+        <i class='fas fa-check'></i>
+      <% end %>
+
+      <%= link_to raw("<i class='fas fa-arrow-left'></i>"), new_session_path(resource_name), class: 'waves-light btn-floating btn-large blue' %><br />
+    </div>
+  <% end %>
+</div>
+
+<br />

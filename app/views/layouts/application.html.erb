@@ -25,12 +25,11 @@
           <br /><br />
       <% else %>
         <div class="container system-body">
-          <br />
           <% flash.each do |message_type, message| %>
             <%= javascript_tag "M.toast({html: '#{message}', classes: 'rounded #{message_type}'})" %>
           <% end %>
           <%= yield %>
-          <br />
+          <br /><br>
         </div>
       <% end %>
   </body>
