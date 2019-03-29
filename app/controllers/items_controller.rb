@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.includes(:category).order("categories.description desc").where(status: 0)
   end
 
   # GET /items/1
